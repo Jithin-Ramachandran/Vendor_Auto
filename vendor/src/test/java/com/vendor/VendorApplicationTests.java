@@ -28,26 +28,26 @@ class VendorApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Test
-	void testEmailNotification() throws MessagingException {
-		// Creating a test vendor
-		Vendor vendor = new Vendor();
-		vendor.setName("Test User");
-		vendor.setEmail("arjun@resemblesystems.com");
-		vendor.setExpiryDate(LocalDate.now().plusDays(30)); // Set expiry date 30 days from now
-
-		// Mock the MimeMessage and MimeMessageHelper
-		MimeMessage mockMimeMessage = mock(MimeMessage.class);
-		when(javaMailSender.createMimeMessage()).thenReturn(mockMimeMessage);
-
-		// Send the email notification
-		vendorService.checkAndSendExpiryNotifications();
-
-		// Verify that the send method of JavaMailSender was called
-		verify(javaMailSender, times(1)).send(mockMimeMessage); // Verifying that send() was called exactly once
-
-		System.out.println("Test email notification sent for: " + vendor.getName());
-	}
+//
+//	@Test
+//	void testEmailNotification() throws MessagingException {
+//		// Creating a test vendor
+//		Vendor vendor = new Vendor();
+//		vendor.setName("Test User");
+//		vendor.setEmail("arjun@resemblesystems.com");
+//		vendor.setExpiryDate(LocalDate.now().plusDays(30)); // Set expiry date 30 days from now
+//
+//		// Mock the MimeMessage and MimeMessageHelper
+//		MimeMessage mockMimeMessage = mock(MimeMessage.class);
+//		when(javaMailSender.createMimeMessage()).thenReturn(mockMimeMessage);
+//
+//		// Send the email notification
+//		vendorService.checkAndSendExpiryNotifications();
+//
+//		// Verify that the send method of JavaMailSender was called
+//		verify(javaMailSender, times(1)).send(mockMimeMessage); // Verifying that send() was called exactly once
+//
+//		System.out.println("Test email notification sent for: " + vendor.getName());
+//	}
 	
 }

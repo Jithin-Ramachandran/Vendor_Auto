@@ -32,12 +32,8 @@ public class User {
     )
     private Set<Role> roles;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id")
-    private Vendor vendor;
-
     @Column(nullable = false)
-    private boolean active = true;  // Add this field with default value
+    private boolean isActive = true;  // Add this field with default value
 
     //updates
     @Column(name = "created_date")
@@ -53,6 +49,10 @@ public class User {
         lastModifiedDate = LocalDateTime.now();
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id")
+    private Vendor vendor;
+
     @PreUpdate
     protected void onUpdate() {
         lastModifiedDate = LocalDateTime.now();
@@ -63,17 +63,18 @@ public class User {
 
     }
 
-    public User(Long id, String name, String username, String email, String password, Set<Role> roles, Vendor vendor) {
+    public User(Long id, String name, String username, String email, String password, Set<Role> roles, boolean isActive, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.vendor = vendor;
+        this.isActive = isActive;
+        this.createdDate = createdDate;
+        this.lastModifiedDate = lastModifiedDate;
     }
 
-    //getters and setters
     public Long getId() {
         return id;
     }
@@ -122,20 +123,12 @@ public class User {
         this.roles = roles;
     }
 
-    public Vendor getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
-
     public boolean isActive() {
-        return active;
+        return isActive;
     }
 
     public void setActive(boolean active) {
-        this.active = active;
+        isActive = active;
     }
 
     public LocalDateTime getCreatedDate() {

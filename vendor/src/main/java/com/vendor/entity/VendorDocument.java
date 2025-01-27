@@ -1,6 +1,8 @@
 package com.vendor.entity;
 
 import jakarta.persistence.*;
+import org.w3c.dom.DocumentType;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,9 +17,9 @@ public class VendorDocument {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @ManyToOne
-    @JoinColumn(name = "document_type_id")
-    private DocumentType documentType;
+//    @ManyToOne
+//    @JoinColumn(name = "document_type_id")
+//    private DocumentType documentType;
 
     private String originalFilename;
     private String storedFilename;
@@ -34,7 +36,7 @@ public class VendorDocument {
     public VendorDocument(Long documentId, Vendor vendor, DocumentType documentType, String originalFilename, String storedFilename, String filePath, LocalDateTime uploadDate, LocalDate expiryDate, Long fileSize, String contentType, String status) {
         this.documentId = documentId;
         this.vendor = vendor;
-        this.documentType = documentType;
+//        this.documentType = documentType;
         this.originalFilename = originalFilename;
         this.storedFilename = storedFilename;
         this.filePath = filePath;
